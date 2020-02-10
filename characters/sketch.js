@@ -6,12 +6,22 @@ characters sketch 1/27/2020
 var boozy;
 var drben;
 var table;
+var drbenzzz;
+var drbenwake;
+var radio
+var mmmbox
+var couch
 
 // runs before set up
-function preload(){
-	boozy = loadImage('boozy.png');
-	drben = loadImage('drben.png');
-	table = loadImage('table.png')
+function preload() {
+    boozy = loadImage('boozy.png');
+    drben = loadImage('drben.png');
+    table = loadImage('table.png');
+    couch = loadImage('couch.png');
+    radio = loadImage('radio.png');
+    box = loadImage('mmmbox.png');
+    drbenwake = loadImage('drbenwake.png');
+    drbensleep = loadImage('drbenzzz.png');
 }
 
 //location variables
@@ -30,65 +40,64 @@ var story = "Dr Ben has a friend named boozy; a woozy old fashioned donut"
 // lab, donut hub, home
 var currentSetting = "lab";
 
-function setup(){
-	createCanvas(windowWidth, windowHeight);
+function setup() {
+    createCanvas(windowWidth, windowHeight);
 }
 
 // runs 60 fps draws graphics
 function draw() {
 
-	// conditional statement
-	if (currentSetting == "lab") {
-		background("lightblue");
-		
-		fill("#C0C0C0");
-		noStroke();
-		rect(50, 50, 20, 20);
-		
-	}
+    // conditional statement
+    if (currentSetting == "home") {
+        background("purple");
+    }
 
-	// home setting
-	else if(currentSetting == "home"){
-// this is where the home will be constructed, along with boozy as a small donut
-	}
+    // office setting
+    else if (currentSetting == "office") {
+        background("gray");
+        
+    } else if (currentSetting == "lab") {
+        // this is where drben will be in his office afterwards
+        background("lightblue");
+        fill("#C0C0C0");
+        noStroke();
+        rect(50, 50, 20, 20);
+    }
 
-	else if(currentSetting == "office") {
-// this is where drben will be in his office afterwards
-	}
+    //draw characters
+    image(boozy, boozyX, boozyY);
+    image(drben, drbenX, drbenY);
+    image(table, tableX, tableY);
 
-	//draw characters
-	image(boozy, boozyX, boozyY);
-	image(drben, drbenX, drbenY);
-	image(table, tableX, tableY);
+    // narration
+    textSize(50);
+    textAlign(CENTER, CENTER);
+    text(story, 300, 100, width / 2);
 
-	// narration
-	textSize(50);
-	textAlign(CENTER, CENTER);
-	text(story, 300, 100, width/2);
+    //instructions
+    testSize(10);
+    fill('white');
+    text("Click mouse to continue the story".wdith - 100, height - 70, 100);
 
-	//instructions
-	testSize(10);
-	fill('white');
-	text("Click mouse to continue the story". wdith - 100, height - 70, 100);
+    function mousePressed() {
+        // change scene
+        // scene order: home, office, lab
 
-	function mousePressed() {
-		// change scene
-		// scene order: lab, home, office
+        if (currentSetting == "home") {
 
-		if (currentSetting == "lab") {
+            // change settings
+            currentSetting = "office";
 
-// change settings
-currentSetting = "home";
+            // update story
+            story = "DrBen is in the office"
 
-// update story
+        } else if (currentSetting == "office") {
+            currentSetting = "lab";
 
-// update characters through piskel and their positions
-		} else if (currentSetting == "home") {
-			currentSetting = "office";
+            story = "DrBen finds Boozy alive"
 
-			// update characters and story again
-		} else if (currentSetting = "office"){
-			currentSetting = "lab";
-			// replicate the beginning of the story.
-		}
+        } else if (currentSetting = "office") {
+            currentSetting = "lab";
+            // replicate the beginning of the story.
+}
 }
