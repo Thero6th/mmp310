@@ -8,9 +8,9 @@ var drben;
 var table;
 var drbenzzz;
 var drbenwake;
-var radio
-var mmmbox
-var couch
+var radio;
+var mmmbox;
+var couch;
 
 // runs before set up
 function preload() {
@@ -35,10 +35,25 @@ var drbenY = 280;
 var tableX = 310;
 var tableY = 410;
 
-var story = "Dr Ben has a friend named boozy; a woozy old fashioned donut"
+var couchX = 200;
+var couchY = 200;
 
-// lab, donut hub, home
-var currentSetting = "lab";
+var radioX = 200;
+var radioY = 200;
+
+var drbenwakeX = 200;
+var drbenwakeY = 200;
+
+var drbensleepX = 200;
+var drbensleepY = 200;
+
+var boxX = 200;
+var boxY = 200;
+
+var story = "Dr Ben has fallen asleep next to his box of donuts"
+
+// lab, office, home
+var currentSetting = "home";
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -48,16 +63,16 @@ function setup() {
 function draw() {
 
     // conditional statement
-    if (currentSetting == "home") {
+    if (currentSetting == "home")
+    {
         background("purple");
-    }
-
-    // office setting
-    else if (currentSetting == "office") {
-        background("gray");
         
+        image(couch);
+        image(radio);
+    } else if (currentSetting == "office") {
+        background("gray");
+        image(drbenwake);
     } else if (currentSetting == "lab") {
-        // this is where drben will be in his office afterwards
         background("lightblue");
         fill("#C0C0C0");
         noStroke();
@@ -78,8 +93,9 @@ function draw() {
     testSize(10);
     fill('white');
     text("Click mouse to continue the story".wdith - 100, height - 70, 100);
-
-    function mousePressed() {
+}
+    function mousePressed()
+    {
         // change scene
         // scene order: home, office, lab
 
@@ -99,5 +115,5 @@ function draw() {
         } else if (currentSetting = "office") {
             currentSetting = "lab";
             // replicate the beginning of the story.
-}
+        }
 }
