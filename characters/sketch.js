@@ -61,28 +61,30 @@ function setup() {
 
 // runs 60 fps draws graphics
 function draw() {
-
-    // conditional statement
-    if (currentSetting == "home")
-    {
+    
+    if (currentSetting == "home") {
         background("purple");
-        
-        image(couch);
-        image(radio);
-    } else if (currentSetting == "office") {
+        image(couch, 200, 200);
+        image(radio, 210, 210);
+        image(drbensleep, 220, 220);
+        image(box, 230, 230);
+    }
+    
+    else if (currentSetting == "office") {
         background("gray");
         image(drbenwake);
-    } else if (currentSetting == "lab") {
+    }
+    
+    else if (currentSetting == "lab") {
         background("lightblue");
         fill("#C0C0C0");
         noStroke();
         rect(50, 50, 20, 20);
     }
-
     //draw characters
-    image(boozy, boozyX, boozyY);
-    image(drben, drbenX, drbenY);
-    image(table, tableX, tableY);
+    //image(boozy, boozyX, boozyY);
+    //image(drben, drbenX, drbenY);
+    //image(table, tableX, tableY);
 
     // narration
     textSize(50);
@@ -91,14 +93,11 @@ function draw() {
 
     //instructions
     testSize(10);
-    fill('white');
-    text("Click mouse to continue the story".wdith - 100, height - 70, 100);
+    //fill('white');
+    //text("Click mouse to continue the story" width - 100, height - 70, 100);
 }
     function mousePressed()
     {
-        // change scene
-        // scene order: home, office, lab
-
         if (currentSetting == "home") {
 
             // change settings
