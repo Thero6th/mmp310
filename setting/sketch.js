@@ -49,7 +49,7 @@ function draw() {
     
     else if (currentSetting == "office") {
         background("gray");
-        image(drbenwake, 200, 400, 500, 500);
+        image(drbenwake, 200, 400, 300, 300);
     }
     
     else if (currentSetting == "lab") {
