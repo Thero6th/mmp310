@@ -9,13 +9,13 @@ var drben;
 // runs before set up
 function preload() {
     boozy = loadImage('images/boozy.png');
-    drben = loadImage('images/drben.png');
+    drben2 = loadImage('images/drben_2.png');
     table = loadImage('images/table.png');
     couch = loadImage('images/couch.png');
     radio = loadImage('images/radio.png');
-    box = loadImage('images/mmmbox.png');
-    drbenwake = loadImage('images/drbenwake.png');
-    drbensleep = loadImage('images/drbenzzz.png');
+    box = loadImage('images/donut_box.png');
+    drben3 = loadImage('images/drben_3.png');
+    drben1 = loadImage('images/drben_1.png');
 }
 
 //location variables
@@ -23,8 +23,8 @@ function preload() {
 var boozyX = 300;
 var boozyY = 300;
 
-var drbenX = 400;
-var drbenY = 280;
+var drben1X = 400;
+var drben1Y = 280;
 
 var story = "Dr. Ben drops chemicals next to his box of donuts"
 
@@ -38,31 +38,25 @@ function setup() {
 // runs 60 fps draws graphics
 function draw() {
 
-    // conditional statement
     if (currentSetting == "home") {
         background("purple");
-        image(radio, 330, 400, 50, 50);
-        image(box, 370, 400, 80, 80);
-        image(couch, 140, 140, 900, 600, 800);
-        image(drbensleep, 230, 330, 150, 150);
-    }
-    
-    else if (currentSetting == "office") {
+        image(couch, 140, 200);
+        image(box, 130, 220);
+        image(drben1, 230, 220);
+        image(radio, 260, 350);
+    } else if (currentSetting == "office") {
         background("gray");
-        image(drbenwake, 200, 400, 300, 300);
-    }
-    
-    else if (currentSetting == "lab") {
+        image(drben2, 200, 200);
+    } else if (currentSetting == "lab") {
         background("lightblue");
         fill("#C0C0C0");
         noStroke();
         rect(0, 600, width, 400);
-        image(table, 200, 480);
-        image(drben, 300, 400);
-        image(boozy, 180, 380);
+        image(table, 200, 320);
+        image(drben3, 300, 200);
+        image(boozy, 180, 230);
     }
 
-    // narration
     textSize(50);
     textAlign(CENTER, CENTER);
     text(story, 300, 100, width / 2);
@@ -72,26 +66,22 @@ function draw() {
     fill('white');
     text("Click mouse to continue the story", 50, 70, 100);
 }
-    function mousePressed()
-    {
-        // change scene
-        // scene order: home, office, lab
 
-        if (currentSetting == "home") {
+function mousePressed() {
 
-            // change settings
-            currentSetting = "office";
+    if (currentSetting == "home") {
 
-            // update story
-            story = "Dr. Ben is in the office, worried about the results"
+        currentSetting = "office";
 
-        } else if (currentSetting == "office") {
-            currentSetting = "lab";
+        story = "Dr. Ben is in the office, worried about the results"
 
-            story = "Dr. Ben finds a donut alive!"
+    } else if (currentSetting == "office") {
+        currentSetting = "lab";
 
-        } else if (currentSetting = "lab") {
-            currentSetting = "home";
-            // replicate the beginning of the story.
-        }
+        story = "Dr. Ben finds a donut alive!"
+    } else if (currentSetting = "lab") {
+        currentSetting = "home";
+
+        story = "Dr. Ben drops chemicals next to his box of donuts"
+    }
 }
