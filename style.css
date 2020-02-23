@@ -1,5 +1,12 @@
-body {
-	background: rgb(255,127,80);
+.top {
+    background-color: tan;
+    color: white;
+    font-family: kefa;
+    font-size: 30px
+}
+nav {
+	border: solid; 3px;
+    background: rgb(255,127,80);
 	font-size: 16px;
 	color: rgb(255,250,250);
 }

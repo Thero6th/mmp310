@@ -49,22 +49,23 @@ function draw() {
         image(drben2, 200, 200);
     } else if (currentSetting == "lab") {
         background("lightblue");
-        fill("#C0C0C0");
-        noStroke();
-        rect(0, 600, width, 400);
         image(table, 200, 320);
         image(drben3, 300, 200);
         image(boozy, 180, 230);
+        fill("#C0C0C0");
+        noStroke();
+        rect(0, 600, width, 400);
     }
 
-    textSize(50);
+    textSize(40);
     textAlign(CENTER, CENTER);
+    textFont("georgia");
     text(story, 300, 100, width / 2);
 
     //instructions
     textSize(20);
     fill('white');
-    text("Click mouse to continue the story", 50, 70, 100);
+    text("Click mouse to continue story", 50, 70, 100);
 }
 
 function mousePressed() {
@@ -79,6 +80,7 @@ function mousePressed() {
         currentSetting = "lab";
 
         story = "Dr. Ben finds a donut alive!"
+        
     } else if (currentSetting = "lab") {
         currentSetting = "home";
 

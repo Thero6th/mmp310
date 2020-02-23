@@ -2,113 +2,142 @@
 characters sketch 1/27/2020
 */
 
-var boozy;
-var drben;
+var boozyImage;
+var drben1Image;
+var drben2Image;
+var drben3Image;
+var couchImage;
+var tableImage;
 
-function preload(){
-    boozy = loadImage('images/boozy.png');
-    drben2 = loadImage('images/drben_2.png');
-    table = loadImage('images/table.png');
-    couch = loadImage('images/couch.png');
-    radio = loadImage('images/radio.png');
-    box = loadImage('images/donut_box.png');
-    drben3 = loadImage('images/drben_3.png');
-    drben1 = loadImage('images/drben_1.png');
+
+function preload() {
+    drben1Image = loadImage('drben_1.png');
+    boozyImage = loadImage('boozy.png');
+    drben2Image = loadImage('drben_2.png');
+    drben3Image = loadImage('drben_3.png');
+    couchImage = loadImage('couch.png');
+    radioImage = loadImage('radio.png');
+    tableImage = loadImage('table.png');
+    boxImage = loadImage('donut_box.png');
 }
-var boozyX = 300;
-var boozyY = 300;
 
-var drben1X = 400;
-var drben1Y = 280;
-
-var story = "Dr. Ben drops chemicals next to his box of donuts"
-
+// home, office, lab
 var currentSetting = "home";
 
-function setup(){
+function setup() {
     createCanvas(windowWidth, windowHeight);
+    imageMode(CENTER);
 }
 
 function draw() {
 
-	if (currentSetting == "home") {
-		home();
-	} else if (currentSetting == "office") {
-		office();
-	} else if (currentSetting == "lab") {
-		lab();
-	} else if (currentSetting == "ending") {
-		home();
-	}
+    if (currentSetting == "home") {
+        home();
+        drben1(500, 430);
+        narration("Dr. Ben drops chemicals onto his box of donuts while he's sleeping");
+    } else if (currentSetting == "office") {
+        office();
+        drben2(430, 350);
+        narration("Dr. Ben waits in his office, worried about the results");
+    } else if (currentSetting == "lab") {
+        lab();
+        drben3(400, 300);
+        boozy(120, 275);
+        narration("Dr. Ben births his new friend Boozy the Donut!")
+    }
+    // draw characters
+    imageMode(CENTER);
+}
 
-	// draw characters
-	imageMode(CENTER);
-	image(drben1, drben1X, drben1Y);
+function boozy(x, y) {
+    image(boozyImage, x, y);
+}
 
-	// narration
-	fill('black');
-	textSize(30);
-	textAlign(CENTER, CENTER);
-	text(story, width/4, 20, width/2);
+function drben1(x, y) {
+    image(drben1Image, x, y);
+}
 
-	// instructions
-	textSize(18);
-	fill('white');
-	// text("Click to go to the next scene", width - 100, height - 70, 100);
-	text("Right arrow to advance story", width - 100, height - 70, 100);
+function drben2(x, y) {
+    image(drben2Image, x, y);
+}
+
+function drben3(x, y) {
+    image(drben3Image, x, y);
+}
+
+function narration(story) {
+    // narration
+    fill('white');
+    textSize(30);
+    textAlign(CENTER);
+    textFont("georgia");
+    text(story, width / 4, 20, width / 2);
+}
+
+function instructions() {
+    // instructions
+    textSize(18);
+    fill('white');
+    // text("Click to go to the next scene", width - 100, height - 70, 100);
+    text("Click mouse to continue story", 30, 40, 200);
 }
 
 function home() {
-	background('purple');
-    image(couch, 400, 400, 200);
-    image(box, 200, 200);
-    image(chemicals, 200, 200);
+    background('purple');
+    image(couchImage, 400, 400);
+    image(boxImage, 350, 370);
+    image(radioImage, 390, 410);
 }
 
 function office() {
-        background("gray");
-        image(drben2, 200, 200)
+    background("gray");
+// door
+    fill('#B07840');
+    stroke('black');
+    rect(240, 240, 100, 200);
+// door handle
+    fill('#C0C0C0');
+    stroke('#878787');
+    ellipse(320, 340, 20, 20);
+// window
+    fill('#add8e6');
+    stroke('#C0C0C0');
+    rect(500, 200, 200, 100);
+// floor
+    fill('#778899');
+    noStroke('');
+    rect(0, 440, width, 200);
 }
 
 function lab() {
-        background("lightblue");
-        fill("#C0C0C0");
-        noStroke();
-        rect(0, 600, width, 400);
-        image(table, 200, 320);
-        image(drben3, 300, 200);
-        image(boozy, 180, 230);
+    background("lightblue");
+// floor
+    fill("#C0C0C0");
+    noStroke();
+    rect(0, 400, width, 300);
+// window
+    fill('gray');
+    stroke('#C0C0C0');
+    rect(500, 140, 200, 100);
+// door
+    fill('#B07840');
+    stroke('black');
+    rect(240, 200, 100, 200);
+// door handle
+    fill('#C0C0C0');
+    stroke('#878787');
+    ellipse(320, 300, 20, 20);
+    image(tableImage, 150, 360);
 }
 
 function mousePressed() {
+    // change scene 
+    // scene order: beach, ocean, island
     if (currentSetting == "home") {
-
         currentSetting = "office";
-
-        story = "Dr. Ben is in the office, worried about the results"
-
     } else if (currentSetting == "office") {
         currentSetting = "lab";
-
-        story = "Dr. Ben finds a donut alive!"
-    } else if (currentSetting = "lab") {
+    } else if (currentSetting == "lab") {
         currentSetting = "home";
-
-        story = "Dr. Ben drops chemicals next to his box of donuts"
     }
-}
-
-function home (){
-background("purple");
-image(couch);
-image(radio);
-}
-
-function office (){
-}
-
-function lab (){
-}
-
-function mousePressed (){
 }
