@@ -84,6 +84,9 @@ function instructions() {
 
 function home() {
     background('purple');
+    fill('#533875');
+    noStroke();
+    rect(0, 460, width, 200);
     image(couchImage, 400, 400);
     image(boxImage, 350, 370);
     image(radioImage, 390, 410);
