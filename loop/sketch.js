@@ -1,5 +1,5 @@
 /*
-characters sketch 1/27/2020
+loop sketch 3/1/2020
 */
 
 // loading graphics
@@ -31,7 +31,7 @@ function draw() {
         image(bubble, 250, y);
         image(bubble, 200, y);
     }
-    
+    //also bubbles in another y position
     for (let y = 100; y <= 280; y +=30) {
         image(bubble, 225, y);
     }
