@@ -20,7 +20,7 @@ var boozyY = 350;
 var drbenX = 520;
 var drbenY = 250;
 
-var story = "The story of Dr Ben and Boozy the donut"
+var story = "This is a story of Dr. Ben and and his donut Boozy"
 
 function setup() {
     createCanvas(windowWidth, windowHeight);

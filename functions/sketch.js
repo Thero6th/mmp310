@@ -35,15 +35,18 @@ function draw() {
         home();
         drben1(500, 430);
         narration("Dr. Ben drops chemicals onto his box of donuts while he's sleeping");
+        instructions('');
     } else if (currentSetting == "office") {
         office();
         drben2(430, 350);
         narration("Dr. Ben waits in his office, worried about the results");
+        instructions('');
     } else if (currentSetting == "lab") {
         lab();
         drben3(400, 300);
         boozy(120, 275);
         narration("Dr. Ben births his new friend Boozy the Donut!")
+        instructions('');
     }
     // draw characters
     imageMode(CENTER);
@@ -78,7 +81,6 @@ function instructions() {
     // instructions
     textSize(18);
     fill('white');
-    // text("Click to go to the next scene", width - 100, height - 70, 100);
     text("Click mouse to continue story", 30, 40, 200);
 }
 
@@ -94,19 +96,19 @@ function home() {
 
 function office() {
     background("gray");
-// door
+    // door
     fill('#B07840');
     stroke('black');
     rect(240, 240, 100, 200);
-// door handle
+    // door handle
     fill('#C0C0C0');
     stroke('#878787');
     ellipse(320, 340, 20, 20);
-// window
+    // window
     fill('#add8e6');
     stroke('#C0C0C0');
     rect(500, 200, 200, 100);
-// floor
+    // floor
     fill('#778899');
     noStroke('');
     rect(0, 440, width, 200);
@@ -114,19 +116,19 @@ function office() {
 
 function lab() {
     background("lightblue");
-// floor
+    // floor
     fill("#C0C0C0");
     noStroke();
     rect(0, 400, width, 300);
-// window
+    // window
     fill('gray');
     stroke('#C0C0C0');
     rect(500, 140, 200, 100);
-// door
+    // door
     fill('#B07840');
     stroke('black');
     rect(240, 200, 100, 200);
-// door handle
+    // door handle
     fill('#C0C0C0');
     stroke('#878787');
     ellipse(320, 300, 20, 20);
