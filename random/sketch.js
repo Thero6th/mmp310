@@ -16,10 +16,14 @@ function preload() {
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
+     setting();
 }
 
-// runs 60 fps draws graphics
-function draw() {
+function mousePressed() {
+    setting();
+}
+
+function setting() {
     //this contains all of the background setting elements
     background("purple");
     image(couch, 140, 200);
@@ -29,12 +33,14 @@ function draw() {
     
     //bubbles
     for (let y = 130; y <= 320; y += 30) {
-        var x = random(width/2);
+        var x = random(width/4);
         image(bubble, x, y);
         image(bubble, x, y);
+       
     }
     //also bubbles coordinated in another y position
     for (let y = 100; y <= 280; y +=30) {
+        var x = random(width/4);
         image(bubble, x, y);
     }
 }
