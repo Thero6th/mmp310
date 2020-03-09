@@ -1,5 +1,5 @@
 /*
-random loop sketch 3/1/2020
+class sketch 3/09/2020
 */
 
 // loading graphics and characters
@@ -17,9 +17,8 @@ function preload() {
 }
 
 /* position of variables for images */
-var bubbleX = [];
-var bubbleY = [];
 var numBubble = 13;
+var bubbles = [];
 var ystart = 300;
 
 function setup() {
@@ -28,9 +27,9 @@ function setup() {
     //radio positions
     let y = 400;
     for (let i = 0; i < numBubble; i++) {
-        bubbleY.push(y);
-        y -= 400 / numBubble;
-        bubbleX.push(random (250, 290));
+
+        let bubble = new Thing(random(250, 290), y -= 400 / numBubble, bubbleImage)
+        bubbles.push(bubble);
     }
 }
 
@@ -51,13 +50,19 @@ function draw() {
     image(drben1Image, 280, 210);
     image(spillImage, 210, 295);
     image(picImage, 480, 100);
+    fill('yellow');
+    noStroke('');
+    ellipse(300, 350, 5, 5);
+    fill('yellow');
+    noStroke('');
+    ellipse(300, 340, 7, 4);
 
     for (let i = 0; i < numBubble; i++) {
-        image(bubbleImage, bubbleX[i], bubbleY[i]);
+        bubbles[i].draw();
 
-        bubbleY[i] -= 1.5;
+        /* bubbleY[i] -= 1.5;
         if (bubbleY[i] < 0) {
             bubbleY[i] = ystart
-        }
+        } */
     }
 }
