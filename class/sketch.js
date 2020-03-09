@@ -1,5 +1,5 @@
 /*
-array sketch 3/5/2020
+random loop sketch 3/1/2020
 */
 
 // loading graphics and characters
