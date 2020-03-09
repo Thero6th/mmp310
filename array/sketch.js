@@ -38,7 +38,7 @@ function draw() {
     background('purple');
     fill('#3c1f41');
     noStroke('');
-    rect(0, 400, width, 200);
+    rect(0, 400, width, height);
     fill('#D2691E');
     stroke('black');
     rect(100, 200, 100, 200);
