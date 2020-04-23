@@ -122,4 +122,18 @@ function draw() {
     rotateZ(PI * 0.85)
     box(140, 50);
     pop();
+
+    specularMaterial(100, 0, 0);
+
+    //right eye
+    push();
+    translate(-100, -180, 100);
+    sphere(20);
+    pop();
+
+    //left eye
+    push();
+    translate(100, -160, 80);
+    sphere(40);
+    pop();
 }
