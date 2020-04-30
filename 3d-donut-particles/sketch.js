@@ -10,20 +10,20 @@ let particleSystem;
 function setup() {
     createCanvas(windowWidth, windowHeight, WEBGL);
     noStroke();
-
-    particleSystem = new system(createVector(0, 0, 0));
+    particleSystem = new System(createVector(0, 0, 0));
 }
 
 function draw() {
-    background(31);
+    background(20);
 
     // drag to rotate up and down, scroll to zoom in and out
     orbitControl();
 
-    directionalLight(220, 220, 255, 1, 1, -1);
+    directionalLight(120, 120, 155, 1, 1, -1);
+    pointLight(355, 355, 355, mouseX - width / 2, mouseY - height / 2, 150);
 
-    box(100);
 
     particleSystem.add();
     particleSystem.update();
+
 }
