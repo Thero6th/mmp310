@@ -8,7 +8,9 @@ class Particle {
         //this.rotationSpeed = createVector(random(1), random(1), random(1));
 
         this.color = createVector(100, 50, 100);
-        this.colorSpeed = createVector(0, 100, 0)
+        this.colorSpeed = createVector(0, 100, 0);
+
+        random(boils).play();
     }
 
     update() {
@@ -17,23 +19,16 @@ class Particle {
         this.color.add(this.colorSpeed);
         //this.rotation.add(this.rotationSpeed);
         this.lifespan -= 1;
+
+        //box collisions
+
+        if (this.position.y > gooSize / 2) {
+            this.speed.y *= -1;
+            this.acceleration.y *= -1;
+        }
     }
 
     display() {
-        push();
-        translate(this.position.x, this.position.y, this.position.z);
-        //rotateX(this.rotation.x);
-        //rotateY(this.rotation.y);
-        //rotateZ(this.rotation.z);
-        ambientMaterial(this.color.x, this.color.y, this.color.z);
-        specularMaterial(this.color.x, this.color.y, this.color.z, 200);
-        shininess(20);
-        //emissiveMaterial(this.color.x, this.color.y, this.color.z, 200);
-        fill(this.color.x, this.color.y, this.color.z);
-        sphere(10);
-
-        pop();
-
         push();
         translate(this.position.x, this.position.y, this.position.z);
         //rotateX(this.rotation.x);
