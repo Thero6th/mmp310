@@ -1,5 +1,17 @@
 label {
     color: #fff;
     font-family: raleway;
-    background-color: #bbb;
+    background-color: green;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+label-2 {
+    color: #fff;
+    font-family: raleway;
+    background-color: crimson;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
 }

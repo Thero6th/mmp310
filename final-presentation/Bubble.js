@@ -7,7 +7,7 @@ class Bubble extends Thing {
         this.y -= this.ySpeed;
         
         if(this.y < 20) {
-            this.y = 300;
+            this.y = 350;
         }
     }
 }

@@ -2,7 +2,7 @@
 05/14/20 */
 
 // loading graphics and characters
-var bubbleImage, dripImage
+var bubbleImage
 
 // runs before set up
 function preload() {
@@ -13,7 +13,6 @@ function preload() {
     bubbleImage = loadImage('images/bubble.png');
     spillImage = loadImage('images/radio_spill.png');
     picImage = loadImage('images/drben_pic.png');
-    dripImage = loadImage('images/drip.png');
     boozyImage = loadImage('images/boozy.png');
     boozyImage2 = loadImage('images/boozy-center.png');
     boozyImage3 = loadImage('images/boozy-roar.png');
@@ -21,59 +20,48 @@ function preload() {
 
 // global values
 var bubbles = [];
-var numBubbles = 5;
-
-var drips = [];
-var numDrips = 5;
+var numBubbles = 30;
 
 // interface value
-var wallColor = 270;
-var wallSlider;
+var puddleColor = 270;
+var puddleSlider;
 
 var bubbleMinSpeed = 0.30;
 var bubbleMaxSpeed = 2;
 var bubbleSpeedSlider;
-
-var dripMinSpeed = 0.03;
-var dripMaxSpeed = 0.30;
-var dripSpeedSlider;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
 
     //bubble positions
     for (let i = 0; i < numBubbles; i++) {
-        let x = random(250, 290)
-        let y = random(50, 400)
+        let x = random(760, 900)
+        let y = random(50, 500)
         let bubble = new Bubble(x, y, bubbleImage)
         bubbles.push(bubble);
     }
 
-    // drip positions
-    for (let i = 0; i < numDrips; i++) {
-        let x = random(200, 230)
-        let y = random(300, 320)
-        let drip = new Drip(x, y, dripImage)
-        drips.push(drip);
-    }
+    // HTML content for puddle
+    var puddleLabel = createElement('label', 'Deactivate the chemicals!')
+    puddleLabel.position(780, 620);
+
+    // slider for puddle
+    puddleSlider = createSlider(2, puddleColor, puddleColor);
+    puddleSlider.position(800, 660);
+    puddleSlider.input(updatePuddle);
 
     //HTML content for bubble slider
-    var bubbleSpeedLabel = createElement("label", "Increase Bubble Speed");
-    bubbleSpeedLabel.position(50, 50);
+    var bubbleSpeedLabel = createElement("label-2", "do NOT increase!");
+    bubbleSpeedLabel.position(1000, 400);
 
     //slider for bubble
     bubbleSpeedSlider = createSlider(4, 7, bubbleMinSpeed);
-    bubbleSpeedSlider.position(50, 80);
+    bubbleSpeedSlider.position(995, 460);
     bubbleSpeedSlider.input(updateBubbleSpeed);
+}
 
-    //HTML content for drip slider
-    var dripSpeedLabel = createElement("label", "Increase Drips");
-    dripSpeedLabel.position(50, 120);
-
-    //slider for drip
-    dripSpeedSlider = createSlider(0.20, 20, dripMinSpeed);
-    dripSpeedSlider.position(50, 160);
-    dripSpeedSlider.input(updateDripSpeed);
+function updatePuddle() {
+    puddleColor = puddleSlider.value();
 }
 
 function updateBubbleSpeed() {
@@ -85,24 +73,12 @@ function updateBubbleSpeed() {
     }
 }
 
-function updateDripSpeed() {
-    dripMinSpeed = dripSpeedSlider.value();
-    dripMaxSpeed = bubbleMaxSpeed;
-
-    for (let i = 0; i < numDrips; i++) {
-        drips[i].ySpeed = random(dripMinSpeed, dripMaxSpeed);
-    }
-}
-
 function draw() {
-    //background wall object
-    colorMode(HSB, 360, 100, 100);
-    background(wallColor, 50, 40);
 
-    // floor
-    fill('#3c1f41');
-    noStroke('');
-    rect(0, 400, width, height);
+    // This area is the background
+
+    // wall
+    background("#5B2987");
 
     // door
     fill('#D2691E');
@@ -113,6 +89,16 @@ function draw() {
     fill('#C0C0C0');
     stroke('#878787');
     ellipse(185, 300, 20, 20);
+
+    //wall portriat
+    image(picImage, 480, 100);
+
+    // This area is the middle ground
+
+    // floor
+    fill('#3c1f41');
+    noStroke('');
+    rect(0, 400, width, height);
 
     //outer drip ellipse
     fill('#53e364');
@@ -127,46 +113,40 @@ function draw() {
     // couch
     image(couchImage, 200, 200);
 
-    // Dr ben
-    image(drbenImage, 40, 310);
-    
     //original spill
     image(spillImage, 210, 295);
-    
-    //wall portriat
-    image(picImage, 480, 100);
 
     // donut box
     image(boxImage, 180, 220);
 
     // radioactive capsule
     image(radioImage, 290, 317);
-    
-    // Boozy
-    image(boozyImage, 600, 200);
-    boozyImage.resize(500, 500)
-    
-    //Boozy centered
-    image(boozyImage2, 600, 200);
-    boozyImage2.resize(500, 500);
-    
-    //boozy roar
-    image(boozyImage3, 600, 200);
-    boozyImage3.resize(500, 500);
 
-    // animated bubbles
-    for (let i = 0; i < numBubbles; i++) {
-        bubbles[i].draw();
-        bubbles[i].update();
+    // This area is the foreground
+
+    // Dr ben
+    image(drbenImage, 40, 310);
+
+    //main puddle
+    fill(0, puddleColor, 30);
+    ellipse(870, 500, 100, 50);
+
+    if (mouseX > width / 4) {
+        image(boozyImage2, 600, 200);
+        boozyImage2.resize(500, 500);
+    } else {
+        image(boozyImage, 600, 200);
+        boozyImage.resize(500, 500);
     }
-    
-    // animated drips
-    for (let i = 0; i < numDrips; i++) {
-        drips[i].draw();
-        drips[i].update();
-    }
-    
-    function mousemoved() {
-        
+
+    if (mouseX > width / 2) {
+        image(boozyImage3, 600, 200);
+        boozyImage3.resize(500, 500);
+
+        // animated bubbles
+        for (let i = 0; i < numBubbles; i++) {
+            bubbles[i].draw();
+            bubbles[i].update();
+        }
     }
 }
