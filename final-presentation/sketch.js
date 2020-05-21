@@ -26,12 +26,16 @@ var numBubbles = 30;
 var puddleColor = 270;
 var puddleSlider;
 
-var bubbleMinSpeed = 0.30;
-var bubbleMaxSpeed = 2;
+var bubbleMinSpeed = 2;
+var bubbleMaxSpeed = 14;
 var bubbleSpeedSlider;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
+
+    boozyImage.resize(500, 500);
+    boozyImage2.resize(500, 500);
+    boozyImage3.resize(500, 500);
 
     //bubble positions
     for (let i = 0; i < numBubbles; i++) {
@@ -50,26 +54,14 @@ function setup() {
     puddleSlider.position(800, 660);
     puddleSlider.input(updatePuddle);
 
-    //HTML content for bubble slider
-    var bubbleSpeedLabel = createElement("label-2", "do NOT increase!");
-    bubbleSpeedLabel.position(1000, 400);
-
-    //slider for bubble
-    bubbleSpeedSlider = createSlider(4, 7, bubbleMinSpeed);
-    bubbleSpeedSlider.position(995, 460);
-    bubbleSpeedSlider.input(updateBubbleSpeed);
 }
 
 function updatePuddle() {
     puddleColor = puddleSlider.value();
-}
-
-function updateBubbleSpeed() {
-    bubbleMinSpeed = bubbleSpeedSlider.value();
-    bubbleMaxSpeed = bubbleMaxSpeed;
+    bubbleMaxSpeed = map(puddleColor, 2, 270, 2, 14);
 
     for (let i = 0; i < numBubbles; i++) {
-        bubbles[i].ySpeed = random(bubbleMinSpeed, bubbleMaxSpeed);
+        bubbles[i].ySpeed = random(bubbleMaxSpeed, bubbleMinSpeed);
     }
 }
 
@@ -92,6 +84,12 @@ function draw() {
 
     //wall portriat
     image(picImage, 480, 100);
+
+//ussr instructions
+    fill(300, 300, 300);
+    textFont('raleway');
+    textSize(20);
+    text('Stop Boozy from losing control by turning down the slider!', 50, 50);
 
     // This area is the middle ground
 
@@ -131,17 +129,14 @@ function draw() {
     fill(0, puddleColor, 30);
     ellipse(870, 500, 100, 50);
 
-    if (mouseX > width / 4) {
-        image(boozyImage2, 600, 200);
-        boozyImage2.resize(500, 500);
-    } else {
+    if (mouseX < width / 4) {
         image(boozyImage, 600, 200);
-        boozyImage.resize(500, 500);
-    }
 
-    if (mouseX > width / 2) {
+    } else if (mouseX < width / 2) {
+        image(boozyImage2, 600, 200);
+
+    } else {
         image(boozyImage3, 600, 200);
-        boozyImage3.resize(500, 500);
 
         // animated bubbles
         for (let i = 0; i < numBubbles; i++) {
